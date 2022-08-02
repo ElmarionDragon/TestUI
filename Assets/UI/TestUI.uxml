@@ -1,5 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Slider/Resources/SliderUSS.uss?fileID=7433441132597879392&amp;guid=23ab9ee194f03b342abf789f988dd014&amp;type=3#SliderUSS" />
     <Style src="project://database/Assets/UI/Pose/Resources/PoseUSS.uss?fileID=7433441132597879392&amp;guid=150cfa18ab4ecc14fad7966ffe38d69e&amp;type=3#PoseUSS" />
-    <TestUI.IP />
+    <Style src="project://database/Assets/UI/UICommon.uss?fileID=7433441132597879392&amp;guid=0230ca6cdef5c574280425d937d52d17&amp;type=3#UICommon" />
+    <ui:VisualElement name="mainPanel" class="mainPanel">
+        <ui:VisualElement name="toggles" class="togglesPanel">
+            <ui:Toggle label="Toggle" />
+            <ui:Toggle label="Toggle" />
+        </ui:VisualElement>
+        <ui:VisualElement name="optionsPanel" class="optionsPanel">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
+                <TestUI.Pose />
+                <TestUI.IP />
+                <TestUI.Slider />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

@@ -13,7 +13,7 @@ namespace TestUI
         private const string styleResource = "IPUSS";
 
         private const string ussContainer = "container";
-        private const string ussWindow = "slider-window";
+        private const string ussWindow = "ip-window";
         private const string ussTitle = "title";
 
         private const string ussTextField = "ip-text";
