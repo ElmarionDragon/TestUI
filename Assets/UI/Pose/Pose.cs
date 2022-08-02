@@ -35,12 +35,12 @@ namespace TestUI
             Label title = new Label();
             title.AddToClassList(ussTitle);
             window.Add(title);
-            title.text = "Поза";
+            title.text = "Pose";
 
             title = new Label();
             title.AddToClassList(ussLabel);
             window.Add(title);
-            title.text = "Позиция";
+            title.text = "Position";
 
             posX = createInputField(window, "x");
             posY = createInputField(window, "y");
@@ -50,7 +50,7 @@ namespace TestUI
             title = new Label();
             title.AddToClassList(ussLabel);
             window.Add(title);
-            title.text = "Поворот";
+            title.text = "Rotation";
 
             posX = createInputField(window, "x");
             posY = createInputField(window, "y");

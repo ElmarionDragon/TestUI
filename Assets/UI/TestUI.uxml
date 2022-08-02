@@ -2,16 +2,21 @@
     <Style src="project://database/Assets/UI/Slider/Resources/SliderUSS.uss?fileID=7433441132597879392&amp;guid=23ab9ee194f03b342abf789f988dd014&amp;type=3#SliderUSS" />
     <Style src="project://database/Assets/UI/Pose/Resources/PoseUSS.uss?fileID=7433441132597879392&amp;guid=150cfa18ab4ecc14fad7966ffe38d69e&amp;type=3#PoseUSS" />
     <Style src="project://database/Assets/UI/UICommon.uss?fileID=7433441132597879392&amp;guid=0230ca6cdef5c574280425d937d52d17&amp;type=3#UICommon" />
-    <ui:VisualElement name="mainPanel" class="mainPanel">
-        <ui:VisualElement name="toggles" class="togglesPanel">
-            <ui:Toggle label="Toggle" />
-            <ui:Toggle label="Toggle" />
-        </ui:VisualElement>
-        <ui:VisualElement name="optionsPanel" class="optionsPanel">
+    <ui:Button text="Settings" display-tooltip-when-elided="true" name="menuToggle" style="width: 80px;" />
+    <ui:VisualElement name="mainPanel" class="mainPanel" style="background-color: rgb(75, 68, 96); display: none; left: -420px;">
+        <ui:VisualElement name="togglesPanel" class="togglesPanel" style="flex-direction: row; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; justify-content: space-around;" />
+        <ui:VisualElement name="optionsPanel" class="optionsPanel" style="padding-top: 20px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
             <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1">
-                <TestUI.Pose />
-                <TestUI.IP />
-                <TestUI.Slider />
+                <ui:VisualElement name="Positioner" style="align-items: center; display: none;">
+                    <ui:Label text="Positioner settings" display-tooltip-when-elided="true" style="align-items: center; justify-content: flex-start; font-size: 24px;" />
+                    <TestUI.Slider />
+                    <TestUI.Pose />
+                </ui:VisualElement>
+                <ui:VisualElement name="Painter" style="align-items: center; display: none;">
+                    <ui:Label text="Painter settings" display-tooltip-when-elided="true" style="font-size: 24px;" />
+                    <TestUI.Slider />
+                    <TestUI.IP />
+                </ui:VisualElement>
             </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400557118}
   - component: {fileID: 400557117}
+  - component: {fileID: 400557119}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -171,6 +172,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400557119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400557116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21034f4354eb67949a985f91e4adb5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPrefabs:
+  - name: Positioner
+    ui: Positioner
+    prefab: {fileID: 833980244266122952, guid: 4afede8dba78ac24cb6ba27350f34aa4, type: 3}
+  - name: Painter
+    ui: Painter
+    prefab: {fileID: 6917861401628968375, guid: 953523df80c0dfd49b3b14a6bfa62c52, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

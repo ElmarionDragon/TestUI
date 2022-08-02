@@ -34,7 +34,7 @@ namespace TestUI
             Label title = new Label();
             title.AddToClassList(ussTitle);
             window.Add(title);
-            title.text = "Размер";
+            title.text = "Size";
 
             slider = new UnityEngine.UIElements.Slider(1,10);
             slider.AddToClassList(ussSlider);

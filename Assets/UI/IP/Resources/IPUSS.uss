@@ -1,19 +1,10 @@
 VisualElement {
 }
 
-.container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    background-color: rgba(0, 0, 0, 0.23);
-}
 
 .ip-window {
     width: 300px;
-    height: 200px;
+    height: 230px;
     background-color: rgb(202, 186, 255);
     flex-direction: column;
     align-items: center;
