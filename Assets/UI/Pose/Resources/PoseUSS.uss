@@ -11,7 +11,7 @@ VisualElement {
     background-color: rgba(0, 0, 0, 0.23);
 }
 
-.slider-window {
+.pose-window {
     width: 400px;
     height: 400px;
     background-color: rgb(202, 186, 255);
@@ -33,20 +33,25 @@ VisualElement {
     font-size: 36px;
 }
 
-.slider {
+.plabel {
     width: 200px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.slider-text {
+.ptext {
     width: 200px;
-    margin-top: 10px;  
+    font-size: 12px;
 }
 
-.slider-text Label {
+.ptext Label {
     color: rgb(0,0,0);
+    min-width: 50px;
 }
 
-.slider-text #unity-text-input {
+.ptext #unity-text-input {
     color: rgb(0,0,0);
     background-color: rgb(255,255,255);
 }

@@ -12,9 +12,10 @@ namespace TestUI
 
         private const string styleResource = "SliderUSS";
 
-        private const string ussContainer = "slider_container";
-        private const string ussWindow = "slider_window";
-        private const string ussTitle = "slider-title";
+        private const string ussContainer = "container";
+        private const string ussWindow = "slider-window";
+        private const string ussTitle = "title";
+
         private const string ussSlider = "slider";
         private const string ussTextField = "slider-text";
 
