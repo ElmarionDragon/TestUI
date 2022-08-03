@@ -41,13 +41,14 @@ namespace TestUI
                 uiPrefab = uiPrefabs[i];
                 toggle = new UIPrefabToggle(uiPrefab);
                 toggle.AddToClassList(toggleUSS);
+                toggle.name = uiPrefab.name + "Toggle";
                 togglesPanel.Add(toggle);
 
                 scrollPanel.Add(toggle.ui);
             }
         }
 
-        private void menuTogglePress()
+        public void menuTogglePress()
         {
             if (mainPanel.style.display == DisplayStyle.None) StartCoroutine(menuOpen());
             else StartCoroutine(menuClose());
@@ -69,5 +70,8 @@ namespace TestUI
             yield return new WaitForSeconds(1);
             mainPanel.style.display = DisplayStyle.None;
         }
+
+        public VisualElement getMainPanel()         {   return mainPanel;  }
+        public VisualElement getTogglesPanel()         { return togglesPanel; }
     }
 }

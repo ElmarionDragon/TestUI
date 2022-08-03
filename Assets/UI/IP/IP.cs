@@ -38,6 +38,7 @@ namespace TestUI
 
             rrggbb = new TextField();
             rrggbb.AddToClassList(ussTextField);
+            rrggbb.name = "rrggbb";
             window.Add(rrggbb);
             rrggbb.SetValueWithoutNotify("000000");
 
