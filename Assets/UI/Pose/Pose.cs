@@ -56,9 +56,9 @@ namespace TestUI
             window.Add(title);
             title.text = "Position";
 
-            posX = createInputField(window, "x");
-            posY = createInputField(window, "y");
-            posZ = createInputField(window, "z");
+            posX = createInputField(window, "x", "pos");
+            posY = createInputField(window, "y", "pos");
+            posZ = createInputField(window, "z", "pos");
 
 
             title = new Label();
@@ -66,23 +66,24 @@ namespace TestUI
             window.Add(title);
             title.text = "Rotation";
 
-            rotX = createInputField(window, "x");
-            rotY = createInputField(window, "y");
-            rotZ = createInputField(window, "z");
+            rotX = createInputField(window, "x", "rot");
+            rotY = createInputField(window, "y", "rot");
+            rotZ = createInputField(window, "z", "rot");
         }
         
 
-        private TextField createInputField(VisualElement parent, string label)
+        private TextField createInputField(VisualElement parent, string label, string op)
         {
             TextField field = new TextField();
             field.AddToClassList(ussTextField);
-            parent.Add(field);
+            field.name = op + label; 
             field.label = label;
             field.SetValueWithoutNotify("0");
             field.RegisterValueChangedCallback(v =>
             {
                 onValueChanged(this); 
             });
+            parent.Add(field);
             return field;
         }
 

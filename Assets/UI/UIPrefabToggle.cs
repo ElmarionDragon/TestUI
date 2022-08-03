@@ -95,6 +95,8 @@ namespace TestUI
         {
             model.transform.position = new Vector3(v.x, v.y, v.z);
             model.transform.Rotate(new Vector3(v.rx, v.ry, v.rz));
+            Debug.Log("onPoseChanged");
+            Debug.Log("rotX: " + model.transform.eulerAngles.x);
         }
 
         private void onSliderChanged(float v)

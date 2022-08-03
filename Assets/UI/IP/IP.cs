@@ -45,11 +45,13 @@ namespace TestUI
             alpha = new TextField();
             alpha.AddToClassList(ussTextField);
             window.Add(alpha);
+            alpha.name = "alpha";
             alpha.SetValueWithoutNotify("0");
 
             Button button = new Button();
             button.AddToClassList(ussTextField);
             window.Add(button);
+            button.name = "IP_OK";
             button.text = "OK";
             button.clicked += onClick;
         }

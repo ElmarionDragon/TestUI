@@ -49,6 +49,7 @@ namespace TestUI
 
             textField = new TextField();
             textField.AddToClassList(ussTextField);
+            textField.name = "textSize";
             window.Add(textField);
             textField.SetValueWithoutNotify("1");
             textField.RegisterValueChangedCallback(v =>

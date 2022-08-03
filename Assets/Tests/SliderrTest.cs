@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 
-public class UITest
+public class SliderTest
 {
     private UIController ui;
     private VisualElement mainPanel;
@@ -24,21 +24,10 @@ public class UITest
     public void Teardown()
     {
         Object.Destroy(ui.gameObject);
-    }
+    } 
 
     [UnityTest]
-    public IEnumerator MainPanel_display_none()
-    {
-        mainPanel = ui.getMainPanel();
-
-        yield return null;
-
-        bool isOk = mainPanel.style.display == DisplayStyle.None;
-        Assert.True(isOk);
-    }
-
-    [UnityTest]
-    public IEnumerator Painter_off_modelDestroyed()
+    public IEnumerator Painter_size_2()
     {
         ui.menuTogglePress();
         yield return new WaitForSeconds(1);
@@ -48,10 +37,30 @@ public class UITest
         painter.value = true;
         yield return null;
 
-        painter.value = false;
+        TextField size = painter.ui.Q<TextField>("textSize");
+        size.value = "2";
+        yield return new WaitForSeconds(1);
+
+        bool isOk = painter.model.transform.localScale.x == 2;
+        Assert.True(isOk);
+    }
+
+    [UnityTest]
+    public IEnumerator Positioner_size_3()
+    {
+        ui.menuTogglePress();
+        yield return new WaitForSeconds(1);
+
+        VisualElement togglesPanel = ui.getTogglesPanel();
+        UIPrefabToggle positioner = togglesPanel.Q<UIPrefabToggle>("PositionerToggle");
+        positioner.value = true;
         yield return null;
 
-        bool isOk = painter.model == null;
+        TextField size = positioner.ui.Q<TextField>("textSize");
+        size.value = "3";
+        yield return new WaitForSeconds(1);
+
+        bool isOk = positioner.model.transform.localScale.x == 3;
         Assert.True(isOk);
     }
 }
