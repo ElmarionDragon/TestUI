@@ -32,14 +32,14 @@ namespace TestUI
 
         private void generateToggles()
         {
-            UIToggle toggle;
+            UIPrefabToggle toggle;
             UIPrefab uiPrefab;
             VisualElement ui;
             VisualElement scrollPanel = mainPanel.Q<VisualElement>("unity-content-container");
             for (int i = 0; i < uiPrefabs.Length; i++)
             {
                 uiPrefab = uiPrefabs[i];
-                toggle = new UIToggle(uiPrefab);
+                toggle = new UIPrefabToggle(uiPrefab);
                 toggle.AddToClassList(toggleUSS);
                 togglesPanel.Add(toggle);
 

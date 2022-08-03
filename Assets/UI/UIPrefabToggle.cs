@@ -5,14 +5,13 @@ using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public class UIToggle : Toggle
+    public class UIPrefabToggle : Toggle
     {
         public UIPrefab uiPrefab;
-        public GameObject prefab;
-
+        public GameObject model;
         public VisualElement ui;
 
-        public UIToggle(UIPrefab p) : base()
+        public UIPrefabToggle(UIPrefab p) : base()
         {
             uiPrefab = p;
             label = uiPrefab.name;
@@ -25,12 +24,12 @@ namespace TestUI
                 if (flag)
                 {
                     ui.style.display = DisplayStyle.Flex;
-                    prefab = GameObject.Instantiate(uiPrefab.prefab);
+                    model = GameObject.Instantiate(uiPrefab.prefab);
                 }
                 else
                 {
                     ui.style.display = DisplayStyle.None;
-                    GameObject.Destroy(prefab);
+                    GameObject.Destroy(model);
                 }
             });
         }
@@ -89,18 +88,18 @@ namespace TestUI
             Color color = new Color32();
             ColorUtility.TryParseHtmlString("#" + s[0], out color);
             color.a = a / 100;
-            prefab.GetComponent<MeshRenderer>().material.color = color;
+            model.GetComponent<MeshRenderer>().material.color = color;
         }
 
         private void onPoseChanged(Pose v)
         {
-            prefab.transform.position = new Vector3(v.x, v.y, v.z);
-            prefab.transform.Rotate(new Vector3(v.rx, v.ry, v.rz));
+            model.transform.position = new Vector3(v.x, v.y, v.z);
+            model.transform.Rotate(new Vector3(v.rx, v.ry, v.rz));
         }
 
         private void onSliderChanged(float v)
         {
-            prefab.transform.localScale = new Vector3(v, v, v);
+            model.transform.localScale = new Vector3(v, v, v);
         }
     }
 }
