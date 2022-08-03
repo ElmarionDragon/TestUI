@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,6 +20,8 @@ namespace TestUI
 
         UnityEngine.UIElements.Slider slider;
         private TextField textField;
+
+        public event Action<float> changed;
 
         public Slider()
         {
@@ -61,6 +62,7 @@ namespace TestUI
         public void onValueChanged(float v)
         {
             Debug.Log("onValueChanged: " + v);
+            changed.Invoke(v);
         }
     }
 }

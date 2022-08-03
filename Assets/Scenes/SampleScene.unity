@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,11 +186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPrefabs:
   - name: Positioner
-    ui: Positioner
     prefab: {fileID: 833980244266122952, guid: 4afede8dba78ac24cb6ba27350f34aa4, type: 3}
+    uiComponents: 0000000001000000
   - name: Painter
-    ui: Painter
     prefab: {fileID: 6917861401628968375, guid: 953523df80c0dfd49b3b14a6bfa62c52, type: 3}
+    uiComponents: 0000000002000000
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

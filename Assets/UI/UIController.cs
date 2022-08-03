@@ -3,79 +3,83 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIController : MonoBehaviour
+namespace TestUI
 {
-    private Button menuToggle;
-    private VisualElement mainPanel;
-    private VisualElement togglesPanel;
-
-    private const string toggleUSS = "toggleTop";
-
-    public UIPrefab[] uiPrefabs;
-
-    private void Start()
+    public class UIController : MonoBehaviour
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
+        private Button menuToggle;
+        private VisualElement mainPanel;
+        private VisualElement togglesPanel;
 
-        menuToggle = root.Q<Button>("menuToggle");
-        menuToggle.clicked += menuTogglePress;
+        private const string toggleUSS = "toggleTop";
 
-        mainPanel = root.Q<VisualElement>("mainPanel");
-        togglesPanel = root.Q<VisualElement>("togglesPanel");
+        public UIPrefab[] uiPrefabs;
 
-        mainPanel.style.display = DisplayStyle.None;
-
-        generateToggles();
-    }
-
-    private void generateToggles()
-    {
-        UIToggle toggle;
-        UIPrefab uiPrefab;
-        for (int i = 0; i < uiPrefabs.Length; i++)
+        private void Start()
         {
-            uiPrefab = uiPrefabs[i];
-            toggle = new UIToggle(uiPrefab);
-            toggle.AddToClassList(toggleUSS);
-            togglesPanel.Add(toggle);
+            var root = GetComponent<UIDocument>().rootVisualElement;
 
-            toggle.changed += togglePrefab;
+            menuToggle = root.Q<Button>("menuToggle");
+            menuToggle.clicked += menuTogglePress;
+
+            mainPanel = root.Q<VisualElement>("mainPanel");
+            togglesPanel = root.Q<VisualElement>("togglesPanel");
+
+            mainPanel.style.display = DisplayStyle.None;
+
+            generateToggles();
         }
-    }
 
-    private void togglePrefab(UIPrefab uiPrefab, bool v)
-    {
-        string uiName = uiPrefab.ui;
-        VisualElement ui = mainPanel.Q<VisualElement>(uiName);
+        private void generateToggles()
+        {
+            UIToggle toggle;
+            UIPrefab uiPrefab;
+            VisualElement ui;
+            VisualElement scrollPanel = mainPanel.Q<VisualElement>("unity-content-container");
+            for (int i = 0; i < uiPrefabs.Length; i++)
+            {
+                uiPrefab = uiPrefabs[i];
+                toggle = new UIToggle(uiPrefab);
+                toggle.AddToClassList(toggleUSS);
+                togglesPanel.Add(toggle);
 
-        if (v) ui.style.display = DisplayStyle.Flex;
-        else ui.style.display = DisplayStyle.None;
+                //toggle.changed += togglePrefab;
 
-        GameObject prefab = uiPrefab.prefab;
-        GameObject obj = Instantiate(prefab);
-    }
+                scrollPanel.Add(toggle.ui);
+            }
+        }
+
+        private void togglePrefab(UIPrefab uiPrefab, bool v)
+        {
+            string uiName = uiPrefab.name;
+            VisualElement ui = mainPanel.Q<VisualElement>(uiName);
+
+            if (v) ui.style.display = DisplayStyle.Flex;
+            else ui.style.display = DisplayStyle.None;
+        }
 
 
-    private void menuTogglePress()
-    {
-        if (mainPanel.style.display == DisplayStyle.None) StartCoroutine(menuOpen());
-        else StartCoroutine(menuClose());
-    }
+        private void menuTogglePress()
+        {
+            if (mainPanel.style.display == DisplayStyle.None) StartCoroutine(menuOpen());
+            else StartCoroutine(menuClose());
+        }
 
-    private IEnumerator menuOpen()
-    {
-        mainPanel.style.display = DisplayStyle.Flex;
-        mainPanel.style.left = -420;
-        yield return null;
-        mainPanel.style.left = 0;
-    }
+        private IEnumerator menuOpen()
+        {
+            mainPanel.style.display = DisplayStyle.Flex;
+            mainPanel.style.left = -420;
+            yield return null;
+            mainPanel.style.left = 0;
+        }
 
-    private IEnumerator menuClose()
-    {
-        mainPanel.style.left = 0;
-        yield return null;
-        mainPanel.style.left = -420;
-        yield return new WaitForSeconds(1);
-        mainPanel.style.display = DisplayStyle.None;
+        private IEnumerator menuClose()
+        {
+            mainPanel.style.left = 0;
+            yield return null;
+            mainPanel.style.left = -420;
+            yield return new WaitForSeconds(1);
+            mainPanel.style.display = DisplayStyle.None;
+        }
     }
 }

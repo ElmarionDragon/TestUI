@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,6 +21,21 @@ namespace TestUI
         private TextField posX;
         private TextField posY;
         private TextField posZ;
+
+        private TextField rotX;
+        private TextField rotY;
+        private TextField rotZ;
+
+        public float x  { get { return float.Parse(posX.text); } }
+        public float y { get { return float.Parse(posY.text); } }
+        public float z { get { return float.Parse(posZ.text); } }
+
+        public float rx { get { return float.Parse(rotX.text); } }
+        public float ry { get { return float.Parse(rotY.text); } }
+        public float rz { get { return float.Parse(rotZ.text); } }
+
+
+        public event Action<Pose> changed;
 
         public Pose()
         {
@@ -52,9 +66,9 @@ namespace TestUI
             window.Add(title);
             title.text = "Rotation";
 
-            posX = createInputField(window, "x");
-            posY = createInputField(window, "y");
-            posZ = createInputField(window, "z");
+            rotX = createInputField(window, "x");
+            rotY = createInputField(window, "y");
+            rotZ = createInputField(window, "z");
         }
         
 
@@ -67,7 +81,7 @@ namespace TestUI
             field.SetValueWithoutNotify("0");
             field.RegisterValueChangedCallback(v =>
             {
-                onValueChanged(this);
+                onValueChanged(this); 
             });
             return field;
         }
@@ -75,6 +89,7 @@ namespace TestUI
         public void onValueChanged(Pose v)
         {
             Debug.Log("onValueChanged: " + v);
+            changed.Invoke(this);
         }
     }
 }

@@ -4,10 +4,21 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[Serializable]
-public class UIPrefab
+namespace TestUI
 {
-    public string name;
-    public string ui;
-    public GameObject prefab;
+    [Serializable]
+    public class UIPrefab
+    {
+        public string name;
+        public GameObject prefab;
+
+        public UIComponentType[] uiComponents;
+
+        public enum UIComponentType
+        {
+            Slider,
+            Pose,
+            IP
+        } 
+    }
 }

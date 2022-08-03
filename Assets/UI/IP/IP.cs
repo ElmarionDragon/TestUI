@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,6 +19,8 @@ namespace TestUI
 
         private TextField rrggbb;
         private TextField alpha;
+
+        public event Action<string> changed;
 
         public IP()
         {
@@ -54,12 +55,8 @@ namespace TestUI
 
         private void onClick()
         {
-            onValueChanged(rrggbb.text + ":" + alpha.text);
-        }
-
-        public void onValueChanged(string v)
-        {
-            Debug.Log("onValueChanged: " + v);
+            Debug.Log("onClick: " + rrggbb.text + ":" + alpha.text);
+            changed.Invoke(rrggbb.text + ":" + alpha.text);
         }
     }
 }
