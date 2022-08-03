@@ -43,21 +43,9 @@ namespace TestUI
                 toggle.AddToClassList(toggleUSS);
                 togglesPanel.Add(toggle);
 
-                //toggle.changed += togglePrefab;
-
                 scrollPanel.Add(toggle.ui);
             }
         }
-
-        private void togglePrefab(UIPrefab uiPrefab, bool v)
-        {
-            string uiName = uiPrefab.name;
-            VisualElement ui = mainPanel.Q<VisualElement>(uiName);
-
-            if (v) ui.style.display = DisplayStyle.Flex;
-            else ui.style.display = DisplayStyle.None;
-        }
-
 
         private void menuTogglePress()
         {

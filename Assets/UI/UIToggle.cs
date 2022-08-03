@@ -12,8 +12,6 @@ namespace TestUI
 
         public VisualElement ui;
 
-        public event Action<UIPrefab, bool> changed;
-
         public UIToggle(UIPrefab p) : base()
         {
             uiPrefab = p;
@@ -34,14 +32,18 @@ namespace TestUI
                     ui.style.display = DisplayStyle.None;
                     GameObject.Destroy(prefab);
                 }
-                changed.Invoke(uiPrefab, value);
             });
         }
 
         public VisualElement createUI()
         {
             VisualElement container = new VisualElement();
-            container.name = name;
+            container.AddToClassList("container");
+            container.name = uiPrefab.name;
+
+            Label title = new Label(uiPrefab.name);
+            title.AddToClassList("prefabTitle");
+            container.Add(title);
 
             VisualElement vs;
             UIPrefab.UIComponentType uiType;
@@ -83,12 +85,10 @@ namespace TestUI
         private void onIPChanged(string v)
         {
             string[] s = v.Split(":");
-            string rr = s[0].Substring(0, 2);
-            string gg = s[0].Substring(2, 2);
-            string bb = s[0].Substring(4, 2);
             float a = float.Parse(s[1]);
             Color color = new Color32();
             ColorUtility.TryParseHtmlString("#" + s[0], out color);
+            color.a = a / 100;
             prefab.GetComponent<MeshRenderer>().material.color = color;
         }
 
