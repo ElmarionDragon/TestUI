@@ -18,7 +18,8 @@ namespace TestUI
         {
             Slider,
             Pose,
-            IP
+            IP,
+            SliderX
         } 
     }
 }

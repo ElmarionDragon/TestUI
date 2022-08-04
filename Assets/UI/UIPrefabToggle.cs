@@ -78,6 +78,12 @@ namespace TestUI
                 vs.changed += onSliderChanged;
                 return vs;
             }
+            if (uiType == UIPrefab.UIComponentType.SliderX)
+            {
+                Slider vs = new Slider();
+                vs.changed += onSliderXChanged;
+                return vs;
+            }
             return null;
         }
 
@@ -102,6 +108,11 @@ namespace TestUI
         private void onSliderChanged(float v)
         {
             model.transform.localScale = new Vector3(v, v, v);
+        }
+
+        private void onSliderXChanged(float v)
+        {
+            model.transform.position = new Vector3(v, model.transform.position.y, model.transform.position.z);
         }
     }
 }
