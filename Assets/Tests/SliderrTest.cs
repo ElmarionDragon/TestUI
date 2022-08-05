@@ -24,6 +24,10 @@ public class SliderTest
     public void Teardown()
     {
         Object.Destroy(ui.gameObject);
+        GameObject obj = GameObject.Find("Positioner(Clone)");
+        if (obj) Object.Destroy(obj.gameObject);
+        obj = GameObject.Find("Painter(Clone)");
+        if (obj) Object.Destroy(obj.gameObject);
     } 
 
     [UnityTest]
@@ -37,12 +41,13 @@ public class SliderTest
         painterToogle.value = true;
         yield return null;
 
-        VisualElement painter = togglesPanel.Q<Toggle>("Painter");
+        mainPanel = ui.getMainPanel();
+        VisualElement painter = mainPanel.Q<VisualElement>("Painter");
         TextField size = painter.Q<TextField>("textSize");
         size.value = "2";
         yield return new WaitForSeconds(1);
 
-        GameObject obj = GameObject.Find("Painter");
+        GameObject obj = GameObject.Find("Painter(Clone)");
         bool isOk = obj.transform.localScale.x == 2;
         Assert.True(isOk);
     }
@@ -58,12 +63,13 @@ public class SliderTest
         positionerToogle.value = true;
         yield return null;
 
-        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        mainPanel = ui.getMainPanel();
+        VisualElement positioner = mainPanel.Q<VisualElement>("Positioner");
         TextField size = positioner.Q<TextField>("textSize");
         size.value = "3";
         yield return new WaitForSeconds(1);
 
-        GameObject obj = GameObject.Find("Positioner");
+        GameObject obj = GameObject.Find("Positioner(Clone)");
         bool isOk = obj.transform.localScale.x == 3;
         Assert.True(isOk);
     }

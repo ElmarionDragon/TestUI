@@ -24,6 +24,8 @@ public class PoseTest
     public void Teardown()
     {
         Object.Destroy(ui.gameObject);
+        GameObject obj = GameObject.Find("Positioner(Clone)");
+        if (obj) Object.Destroy(obj.gameObject);
     }
 
 
@@ -38,12 +40,13 @@ public class PoseTest
         positionerToggle.value = true;
         yield return null;
 
-        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        VisualElement mainPanel = ui.getMainPanel();
+        VisualElement positioner = mainPanel.Q<VisualElement>("Positioner");
         TextField posX = positioner.Q<TextField>("posx");
         posX.value = "2";
         yield return new WaitForSeconds(1);
 
-        GameObject obj = GameObject.Find("Positioner");
+        GameObject obj = GameObject.Find("Positioner(Clone)");
         bool isOk = obj.transform.position.x == 2;
         Assert.True(isOk);
     }
@@ -59,12 +62,13 @@ public class PoseTest
         positionerToggle.value = true;
         yield return null;
 
-        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        VisualElement mainPanel = ui.getMainPanel();
+        VisualElement positioner = mainPanel.Q<VisualElement>("Positioner");
         TextField posX = positioner.Q<TextField>("rotx");
         posX.value = "45";
         yield return new WaitForSeconds(1);
 
-        GameObject obj = GameObject.Find("Positioner");
+        GameObject obj = GameObject.Find("Positioner(Clone)");
         bool isOk = obj.transform.eulerAngles.x > 44;
         Assert.True(isOk);
     }

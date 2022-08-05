@@ -24,6 +24,8 @@ public class UITest
     public void Teardown()
     {
         Object.Destroy(ui.gameObject);
+        GameObject obj = GameObject.Find("Painter(Clone)");
+        if (obj) Object.Destroy(obj.gameObject);
     }
 
     [UnityTest]
