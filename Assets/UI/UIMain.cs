@@ -5,15 +5,13 @@ using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public class UIController : MonoBehaviour
+    public class UIMain : MonoBehaviour
     {
         private Button menuToggle;
         private VisualElement mainPanel;
         private VisualElement togglesPanel;
 
-        private const string toggleUSS = "toggleTop";
-
-        public UIPrefab[] uiPrefabs;
+        public UIPrefabData[] uiPrefabs;
 
         private void Start()
         {
@@ -27,24 +25,21 @@ namespace TestUI
 
             mainPanel.style.display = DisplayStyle.None;
 
-            generateToggles();
+            generateUIPrefabs();
         }
 
-        private void generateToggles()
+        private void generateUIPrefabs()
         {
-            UIPrefabToggle toggle;
-            UIPrefab uiPrefab;
-            VisualElement ui;
+            UIPrefabData uiPrefab;
+            UIPrefabView prefabView;
+            
             VisualElement scrollPanel = mainPanel.Q<VisualElement>("unity-content-container");
             for (int i = 0; i < uiPrefabs.Length; i++)
             {
                 uiPrefab = uiPrefabs[i];
-                toggle = new UIPrefabToggle(uiPrefab);
-                toggle.AddToClassList(toggleUSS);
-                toggle.name = uiPrefab.name + "Toggle";
-                togglesPanel.Add(toggle);
-
-                scrollPanel.Add(toggle.ui);
+                prefabView = new UIPrefabView(uiPrefab);
+                togglesPanel.Add(prefabView.toggle);
+                scrollPanel.Add(prefabView.panelUI);
             }
         }
 

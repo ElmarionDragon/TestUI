@@ -18,8 +18,8 @@ namespace TestUI
         private const string ussSlider = "slider";
         private const string ussTextField = "slider-text";
 
-        UnityEngine.UIElements.Slider slider;
-        private TextField textField;
+        public UnityEngine.UIElements.Slider slider;
+        public TextField textField;
 
         public event Action<float> changed;
 

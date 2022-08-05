@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class UITest
 {
-    private UIController ui;
+    private UIMain ui;
     private VisualElement mainPanel;
 
     [SetUp]
@@ -16,7 +16,7 @@ public class UITest
     {
         GameObject gameGameObject =
             MonoBehaviour.Instantiate(Resources.Load<GameObject>("MainUI"));
-        ui = gameGameObject.GetComponent<UIController>();
+        ui = gameGameObject.GetComponent<UIMain>();
         mainPanel = ui.getMainPanel();
     }
 
@@ -44,14 +44,15 @@ public class UITest
         yield return new WaitForSeconds(1);
 
         VisualElement togglesPanel = ui.getTogglesPanel();
-        UIPrefabToggle painter = togglesPanel.Q<UIPrefabToggle>("PainterToggle");
+        Toggle painter = togglesPanel.Q<Toggle>("PainterToggle");
         painter.value = true;
         yield return null;
 
         painter.value = false;
         yield return null;
 
-        bool isOk = painter.model == null;
+        GameObject obj = GameObject.Find("Painter");
+        bool isOk = obj == null;
         Assert.True(isOk);
     }
 }

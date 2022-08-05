@@ -20,6 +20,8 @@ namespace TestUI
         private TextField rrggbb;
         private TextField alpha;
 
+        public string value = "FFFFFF:100";
+
         public event Action<string> changed;
 
         public IP()
@@ -58,7 +60,7 @@ namespace TestUI
 
         private void onClick()
         {
-            Debug.Log("onClick: " + rrggbb.text + ":" + alpha.text);
+            value = rrggbb.text + ":" + alpha.text;
             changed.Invoke(rrggbb.text + ":" + alpha.text);
         }
     }

@@ -1,0 +1,86 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace TestUI
+{
+    public class UIPrefabView
+    {
+        public Toggle toggle;
+        public VisualElement panelUI;
+        public UIPrefabData uiPrefabData;
+        public GameObject prefabInstance;
+        private List<ComponentModel> components = new List<ComponentModel>();
+
+        private const string toggleUSS = "toggleTop";
+
+        UIPrefabController controller;
+
+
+        public UIPrefabView(UIPrefabData p)
+        { 
+            uiPrefabData = p;
+
+            createToggle();
+            creaetPanelUI();
+
+            controller = new UIPrefabController(this);
+        }
+
+        private void createToggle()
+        {
+            toggle = new Toggle();
+            toggle.label = uiPrefabData.name;
+            toggle.AddToClassList(toggleUSS);
+            toggle.name = uiPrefabData.name + "Toggle";
+        }
+
+        private void creaetPanelUI()
+        {
+            panelUI = new VisualElement();
+            panelUI.AddToClassList("container");
+            panelUI.name = uiPrefabData.name;
+
+            Label title = new Label(uiPrefabData.name);
+            title.AddToClassList("prefabTitle");
+            panelUI.Add(title);
+
+            ComponentModel componentModel;
+            UIPrefabData.UIComponentType uiType;
+            UIPrefabData.UIComponentType[] uiComponents = uiPrefabData.uiComponents;
+
+            for (int i = 0; i < uiComponents.Length; i++)
+            {
+                uiType = uiComponents[i];
+                componentModel = UIPrefabData.createUIComponent(uiType);
+                panelUI.Add(componentModel.ui);
+                components.Add(componentModel);
+            }
+
+            panelUI.style.display = DisplayStyle.None;
+        }
+
+        private void updateComponents()
+        {
+            for (int i = 0; i < components.Count; i++)
+            {
+                components[i].updatePrefab(prefabInstance);
+            }
+        }
+
+        public void show()
+        {
+            panelUI.style.display = DisplayStyle.Flex;
+            prefabInstance = GameObject.Instantiate(uiPrefabData.prefab);
+            updateComponents();
+        }
+
+        public void hide()
+        {
+            panelUI.style.display = DisplayStyle.None;
+            GameObject.Destroy(prefabInstance);
+        }
+    }
+}

@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class PoseTest
 {
-    private UIController ui;
+    private UIMain ui;
     private VisualElement mainPanel;
 
     [SetUp]
@@ -16,7 +16,7 @@ public class PoseTest
     {
         GameObject gameGameObject =
             MonoBehaviour.Instantiate(Resources.Load<GameObject>("MainUI"));
-        ui = gameGameObject.GetComponent<UIController>();
+        ui = gameGameObject.GetComponent<UIMain>();
         mainPanel = ui.getMainPanel();
     }
 
@@ -34,15 +34,17 @@ public class PoseTest
         yield return new WaitForSeconds(1);
 
         VisualElement togglesPanel = ui.getTogglesPanel();
-        UIPrefabToggle positioner = togglesPanel.Q<UIPrefabToggle>("PositionerToggle");
-        positioner.value = true;
+        Toggle positionerToggle = togglesPanel.Q<Toggle>("PositionerToggle");
+        positionerToggle.value = true;
         yield return null;
 
-        TextField posX = positioner.ui.Q<TextField>("posx");
+        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        TextField posX = positioner.Q<TextField>("posx");
         posX.value = "2";
         yield return new WaitForSeconds(1);
 
-        bool isOk = positioner.model.transform.position.x == 2;
+        GameObject obj = GameObject.Find("Positioner");
+        bool isOk = obj.transform.position.x == 2;
         Assert.True(isOk);
     }
 
@@ -53,15 +55,17 @@ public class PoseTest
         yield return new WaitForSeconds(1);
 
         VisualElement togglesPanel = ui.getTogglesPanel();
-        UIPrefabToggle positioner = togglesPanel.Q<UIPrefabToggle>("PositionerToggle");
-        positioner.value = true;
+        Toggle positionerToggle = togglesPanel.Q<Toggle>("PositionerToggle");
+        positionerToggle.value = true;
         yield return null;
 
-        TextField posX = positioner.ui.Q<TextField>("rotx");
+        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        TextField posX = positioner.Q<TextField>("rotx");
         posX.value = "45";
         yield return new WaitForSeconds(1);
 
-        bool isOk = positioner.model.transform.eulerAngles.x > 44;
+        GameObject obj = GameObject.Find("Positioner");
+        bool isOk = obj.transform.eulerAngles.x > 44;
         Assert.True(isOk);
     }
 }

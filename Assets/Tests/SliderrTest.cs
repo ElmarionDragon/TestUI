@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class SliderTest
 {
-    private UIController ui;
+    private UIMain ui;
     private VisualElement mainPanel;
 
     [SetUp]
@@ -16,7 +16,7 @@ public class SliderTest
     {
         GameObject gameGameObject =
             MonoBehaviour.Instantiate(Resources.Load<GameObject>("MainUI"));
-        ui = gameGameObject.GetComponent<UIController>();
+        ui = gameGameObject.GetComponent<UIMain>();
         mainPanel = ui.getMainPanel();
     }
 
@@ -33,15 +33,17 @@ public class SliderTest
         yield return new WaitForSeconds(1);
 
         VisualElement togglesPanel = ui.getTogglesPanel();
-        UIPrefabToggle painter = togglesPanel.Q<UIPrefabToggle>("PainterToggle");
-        painter.value = true;
+        Toggle painterToogle = togglesPanel.Q<Toggle>("PainterToggle");
+        painterToogle.value = true;
         yield return null;
 
-        TextField size = painter.ui.Q<TextField>("textSize");
+        VisualElement painter = togglesPanel.Q<Toggle>("Painter");
+        TextField size = painter.Q<TextField>("textSize");
         size.value = "2";
         yield return new WaitForSeconds(1);
 
-        bool isOk = painter.model.transform.localScale.x == 2;
+        GameObject obj = GameObject.Find("Painter");
+        bool isOk = obj.transform.localScale.x == 2;
         Assert.True(isOk);
     }
 
@@ -52,15 +54,17 @@ public class SliderTest
         yield return new WaitForSeconds(1);
 
         VisualElement togglesPanel = ui.getTogglesPanel();
-        UIPrefabToggle positioner = togglesPanel.Q<UIPrefabToggle>("PositionerToggle");
-        positioner.value = true;
+        Toggle positionerToogle = togglesPanel.Q<Toggle>("PositionerToggle");
+        positionerToogle.value = true;
         yield return null;
 
-        TextField size = positioner.ui.Q<TextField>("textSize");
+        VisualElement positioner = togglesPanel.Q<Toggle>("Positioner");
+        TextField size = positioner.Q<TextField>("textSize");
         size.value = "3";
         yield return new WaitForSeconds(1);
 
-        bool isOk = positioner.model.transform.localScale.x == 3;
+        GameObject obj = GameObject.Find("Positioner");
+        bool isOk = obj.transform.localScale.x == 3;
         Assert.True(isOk);
     }
 }
