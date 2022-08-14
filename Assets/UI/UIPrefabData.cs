@@ -21,20 +21,20 @@ namespace TestUI
             IP
         }
 
-        public static ComponentModel createUIComponent(UIComponentType uiType)
+        public static BaseComponent createUIComponent(UIComponentType uiType)
         {
-            ComponentModel component = null;
+            BaseComponent component = null;
             if (uiType == UIComponentType.IP)
             {
-                component = new IPModel();
-            }
-            if (uiType == UIComponentType.Pose)
-            {
-                component = new PoseModel();
+                component = new IPComponent();
             }
             if (uiType == UIComponentType.Slider)
             {
-                component = new SliderModel();
+                component = new SliderComponent();
+            }
+            if (uiType == UIComponentType.Pose)
+            {
+                component = new PoseComponent();
             }
             return component;
         }

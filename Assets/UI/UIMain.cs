@@ -7,11 +7,18 @@ namespace TestUI
 {
     public class UIMain : MonoBehaviour
     {
+        public static UIMain instance;
+        private void Awake()
+        {
+            instance = this;
+        }
+
         private Button menuToggle;
         private VisualElement mainPanel;
         private VisualElement togglesPanel;
 
         public UIPrefabData[] uiPrefabs;
+        private List<UIPrefabView> uiPrefabViews = new List<UIPrefabView>();
 
         private void Start()
         {
@@ -40,6 +47,7 @@ namespace TestUI
                 prefabView = new UIPrefabView(uiPrefab);
                 togglesPanel.Add(prefabView.toggle);
                 scrollPanel.Add(prefabView.panelUI);
+                uiPrefabViews.Add(prefabView);
             }
         }
 
@@ -68,5 +76,14 @@ namespace TestUI
 
         public VisualElement getMainPanel()         {   return mainPanel;  }
         public VisualElement getTogglesPanel()         { return togglesPanel; }
+
+
+        private void Update()
+        {
+            for (int i = 0; i < uiPrefabViews.Count; i++)
+            {
+                uiPrefabViews[i].updateUI();
+            }
+        }
     }
 }

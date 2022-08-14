@@ -5,29 +5,17 @@ using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public class SliderModel: ComponentModel
+    public class SliderModel : ComponentModel
     {
         private Slider slider;
+        public event Action<float> onSliderChanged;
 
-        public SliderModel(): base()
+        public SliderModel() : base()
         {
         }
-
-        override public VisualElement createUIComponent()
+        public void changeData(float v)
         {
-            slider = new Slider();
-            slider.changed += onSliderChanged;
-            return slider;
-        }
-
-        override public void updateComponent()
-        {
-            onSliderChanged(slider.slider.value);
-        }
-
-        private void onSliderChanged(float v)
-        {
-            prefabInstance.transform.localScale = new Vector3(v, v, v);
+            onSliderChanged(v);
         }
     }
 }

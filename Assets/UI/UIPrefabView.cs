@@ -12,9 +12,10 @@ namespace TestUI
         public VisualElement panelUI;
         public UIPrefabData uiPrefabData;
         public GameObject prefabInstance;
-        private List<ComponentModel> components = new List<ComponentModel>();
+        private List<BaseComponent> components = new List<BaseComponent>();
 
         private const string toggleUSS = "toggleTop";
+        public static bool isShowPanelUI = false;
 
         UIPrefabController controller;
 
@@ -47,22 +48,22 @@ namespace TestUI
             title.AddToClassList("prefabTitle");
             panelUI.Add(title);
 
-            ComponentModel componentModel;
+            BaseComponent component;
             UIPrefabData.UIComponentType uiType;
             UIPrefabData.UIComponentType[] uiComponents = uiPrefabData.uiComponents;
 
             for (int i = 0; i < uiComponents.Length; i++)
             {
                 uiType = uiComponents[i];
-                componentModel = UIPrefabData.createUIComponent(uiType);
-                panelUI.Add(componentModel.ui);
-                components.Add(componentModel);
+                component = UIPrefabData.createUIComponent(uiType);
+                panelUI.Add(component.view.ui);
+                components.Add(component);
             }
 
             panelUI.style.display = DisplayStyle.None;
         }
 
-        private void updateComponents()
+        public void updatePrefab()
         {
             for (int i = 0; i < components.Count; i++)
             {
@@ -70,15 +71,29 @@ namespace TestUI
             }
         }
 
+        public void updateUI()
+        {
+            if (!isShowPanelUI)
+                return;
+
+            for (int i = 0; i < components.Count; i++)
+            {
+                components[i].updateUI();
+            }
+        }
+
         public void show()
         {
             panelUI.style.display = DisplayStyle.Flex;
             prefabInstance = GameObject.Instantiate(uiPrefabData.prefab);
-            updateComponents();
+            updatePrefab();
+            isShowPanelUI = true;
         }
+
 
         public void hide()
         {
+            isShowPanelUI = false;
             panelUI.style.display = DisplayStyle.None;
             GameObject.Destroy(prefabInstance);
         }

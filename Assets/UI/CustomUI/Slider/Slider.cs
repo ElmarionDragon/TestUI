@@ -65,5 +65,11 @@ namespace TestUI
             Debug.Log("onValueChanged: " + v);
             changed.Invoke(v);
         }
+
+        public void update(float v)
+        {
+            textField.value = v.ToString();
+            slider.value = v;
+        }
     }
 }

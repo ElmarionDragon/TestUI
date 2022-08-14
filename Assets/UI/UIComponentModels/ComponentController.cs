@@ -5,10 +5,11 @@ using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public abstract class ComponentModel
+    public abstract class ComponentController: VisualElement
     {
-        public ComponentModel()
+        public ComponentController()
         {
         }
+
     }
 }

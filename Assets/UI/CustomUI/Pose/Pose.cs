@@ -92,5 +92,25 @@ namespace TestUI
             Debug.Log("onValueChanged: " + v);
             changed.Invoke(this);
         }
+
+        public void update(Pose v)
+        {
+            posX.value = v.x.ToString();
+            posY.value = v.y.ToString();
+            posZ.value = v.z.ToString();
+            rotX.value = v.rx.ToString();
+            rotY.value = v.ry.ToString();
+            rotZ.value = v.rz.ToString();
+        }
+
+        public void update(float vx, float vy, float vz, float vrx, float vry, float vrz)
+        {
+            posX.value = vx.ToString();
+            posY.value = vy.ToString();
+            posZ.value = vz.ToString();
+            rotX.value = vrx.ToString();
+            rotY.value = vry.ToString();
+            rotZ.value = vrz.ToString();
+        }
     }
 }

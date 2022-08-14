@@ -58,6 +58,14 @@ namespace TestUI
             button.clicked += onClick;
         }
 
+        public void update(string v)
+        {
+            string[] s = v.Split(":");
+            rrggbb.value = s[0];
+            alpha.value = s[1];
+            value = v;
+        }
+
         private void onClick()
         {
             value = rrggbb.text + ":" + alpha.text;
