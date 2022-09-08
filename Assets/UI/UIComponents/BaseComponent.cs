@@ -8,6 +8,8 @@ namespace TestUI
     public abstract class BaseComponent
     {
         public ComponentView view;
+        public ComponentController controller;
+        public ComponentModel model;
 
         public BaseComponent()
         {
@@ -16,11 +18,7 @@ namespace TestUI
         public void updatePrefab(GameObject prefab)
         {
             view.updatePrefab(prefab);
-        }
-
-        public void updateUI()
-        {
-            view.updateUI();
+            model.updatePrefab(prefab);
         }
     }
 }

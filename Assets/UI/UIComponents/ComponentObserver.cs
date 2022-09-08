@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public abstract class ComponentModel
+    public interface ComponentObserver
     {
-        public ComponentModel()
-        {
-        }
+        void updateObserver();
     }
 }

@@ -19,24 +19,6 @@ namespace TestUI
             Slider,
             Pose,
             IP
-        }
-
-        public static BaseComponent createUIComponent(UIComponentType uiType)
-        {
-            BaseComponent component = null;
-            if (uiType == UIComponentType.IP)
-            {
-                component = new IPComponent();
-            }
-            if (uiType == UIComponentType.Slider)
-            {
-                component = new SliderComponent();
-            }
-            if (uiType == UIComponentType.Pose)
-            {
-                component = new PoseComponent();
-            }
-            return component;
-        }
+        } 
     }
 }

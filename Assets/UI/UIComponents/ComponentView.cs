@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace TestUI
 {
-    public abstract class ComponentView: VisualElement
+    public abstract class ComponentView: VisualElement, ComponentObserver
     {
         public GameObject prefabInstance;
         public VisualElement ui;
@@ -21,8 +21,14 @@ namespace TestUI
             updateComponent();
         }
 
-        public abstract  void updateUI();
         public abstract VisualElement createUIComponent();
         public abstract void updateComponent();
+
+        //public abstract void updateView();
+
+        public void updateObserver()
+        {
+
+        }
     }
 }

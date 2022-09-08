@@ -77,13 +77,5 @@ namespace TestUI
         public VisualElement getMainPanel()         {   return mainPanel;  }
         public VisualElement getTogglesPanel()         { return togglesPanel; }
 
-
-        private void Update()
-        {
-            for (int i = 0; i < uiPrefabViews.Count; i++)
-            {
-                uiPrefabViews[i].updateUI();
-            }
-        }
     }
 }

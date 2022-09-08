@@ -7,12 +7,11 @@ namespace TestUI
 {
     public class SliderComponent: BaseComponent
     {
-        SliderModel model;
-
-        public SliderComponent(): base()
+        public SliderComponent() : base()
         {
             model = new SliderModel();
-            view = new SliderView(model);
+            controller = new SliderController((SliderModel)model);
+            view = new SliderView((SliderController)controller, (SliderModel)model);
         }
     }
 }

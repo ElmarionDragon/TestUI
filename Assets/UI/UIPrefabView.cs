@@ -55,7 +55,7 @@ namespace TestUI
             for (int i = 0; i < uiComponents.Length; i++)
             {
                 uiType = uiComponents[i];
-                component = UIPrefabData.createUIComponent(uiType);
+                component = ComponentFactory.createUIComponent(uiType);
                 panelUI.Add(component.view.ui);
                 components.Add(component);
             }
@@ -68,17 +68,6 @@ namespace TestUI
             for (int i = 0; i < components.Count; i++)
             {
                 components[i].updatePrefab(prefabInstance);
-            }
-        }
-
-        public void updateUI()
-        {
-            if (!isShowPanelUI)
-                return;
-
-            for (int i = 0; i < components.Count; i++)
-            {
-                components[i].updateUI();
             }
         }
 

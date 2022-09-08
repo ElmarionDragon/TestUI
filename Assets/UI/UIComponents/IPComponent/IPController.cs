@@ -10,9 +10,14 @@ namespace TestUI
         public IPView view;
         public IPModel model;
 
-        public IPController(): base()
+        public IPController(IPModel m): base()
         {
-            model.onIPChanged += view.updateView;
+            model = m;
+        }
+
+        public void IPChanged(string v)
+        {
+            model.setColor(v);
         }
     }
 }

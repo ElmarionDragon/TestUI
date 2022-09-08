@@ -7,12 +7,11 @@ namespace TestUI
 {
     public class PoseComponent: BaseComponent
     {
-        PoseModel model;
-
         public PoseComponent(): base()
         {
             model = new PoseModel();
-            view = new PoseView(model);
+            controller = new PoseController((PoseModel)model);
+            view = new PoseView((PoseController)controller, (PoseModel)model);
         }
 
     }
